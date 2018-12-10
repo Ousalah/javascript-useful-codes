@@ -5,16 +5,13 @@
   Author: Mohamed Ousalah
   Author URI: http://MohamedOusalah.com
   Version: 1.0
-
   How to use it :
   	1) Go to any playlist you want to get your progress on it, e.g. [https://www.youtube.com/playlist?list=...]
   	2) Open the javascript console of your browser (Keyboard Shurtcut for Google Chrome : Ctrl + Shift + J).
   	3) Then copy and pass this code on it.
-
   	P.S: 
   		If a playlist contains more than 100 videos,
   		make sure to scroll down through this playlist to load all videos.
-
   	Note:
   		Be sure to signin to your youtube account if you want to get your playlist progression.
 */
@@ -23,8 +20,12 @@
 lectures = document.querySelectorAll("#overlays .ytd-thumbnail-overlay-time-status-renderer");
 // varialble to store totla time of all lectures 
 lectures_total_time = 0;
+var start_from = 127;
+// default = lectures.length
+var end_at = 128;
 // get total time of all lectures
-for (var i = 0, len = lectures.length; i < len; i++) {
+//# for (var i = 0, len = lectures.length; i < len; i++) {
+for (var i = (start_from - 1), len = (end_at); i < len; i++) {
 	// increment total time, and replace (:) with (.)
 	lectures_total_time += parseFloat((lectures[i].innerHTML).replace(":", "."));
 }
@@ -76,7 +77,8 @@ if (number_of_videos == lectures.length) {
 	// reformat "completed_count" and "lectures_count" ex: if 5 => 05  and if 12 => 12, etc ...
 	completed_count = completed_count < 10 ? "0" + completed_count : completed_count;
 	completed_count = completed_count < 100 ? "0" + completed_count : completed_count;
-	var lectures_count = lectures.length;
+	//# var lectures_count = lectures.length;
+	var lectures_count = (end_at) - (start_from - 1);
 	lectures_count = lectures_count < 10 ? "0" + lectures_count : lectures_count;
 	lectures_count = lectures_count < 100 ? "0" + lectures_count : lectures_count;
 
